@@ -14,6 +14,8 @@ If you have questions, create an issue in the Github repository and we will try 
 - `phpunit.xml.dist` The standard [PHPUnit](https://phpunit.de/) configuration file.
 - `.scrutinizer.yml` The standard [Scrutinizer](https://scrutinizer-ci.com/) configuration file.
 - `.travis.yml` The standard [Travis](https://travis-ci.org/) configuration file.
+- `src/` This directory contains the Query and Provider classes for the new client.
+- `tests/src/` This directory contains tests for the Query and Provider classes.
 
 ### How do I create a new client package?
 
@@ -21,8 +23,16 @@ All JobApis clients rely on the low-level [Jobs Common](https://github.com/jobap
 
 The `Provider` class will use the `Query` to make a call to the API and parse the results. Most of the work you have to do as a developer is map the API's response to the Job Object attributes. While the bulk of the work is in the `Query` and `Provider` classes, here is a checklist of things that should be done when setting up a new package:
 
-- [ ] Replace `:package_name`, `:provider_name`, `:author_name`, and `:author_link` with the appropriate values.
-- [ ] Update the `:provider_nameQuery` class
+- [ ] Replace `:package_name`, `:provider_name`, `:author_name`, and `:author_link` with the appropriate values in `composer.json`, `README.md`, and `CHANGELOG.md`.
+- [ ] Update the name of the `SkeletonQuery` class to the new client's name.
+- [ ] Add all the abstract methods and API parameters to the `Query` class.
+- [ ] Add tests for the `Query` class to the `tests/src` directory.
+- [ ] Update the name of the `SkeletonProvider` class to the new client's name.
+- [ ] Add all the abstract methods and API parameters to the `Provider` class.
+- [ ] Add tests for the `Provider` class to the `tests/src` directory.
+- [ ] Add the package to Packagist.
+- [ ] Set up Travis and Scrutinizer to run linting and tests.
+- [ ] Tag a new release on Github.
 
 *Remove everything above this line when creating a new client.*
 
